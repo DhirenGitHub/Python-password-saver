@@ -12,7 +12,7 @@ class App:
 
     def login(self):
         try:
-            info = open(r"C:\Users\DELL\Desktop\Code\Python\Applications\Password organizer\Users\\" + self.username.get() + ".txt", "r")
+            info = open(r"Users\\" + self.username.get() + ".txt", "r")
             if info.read() == hashlib.sha256(self.password.get().encode('utf-8')).hexdigest():
                 global username
                 username = self.username.get()
@@ -47,7 +47,7 @@ class App:
             self.pass_label.place_forget()
             self.create_login()
 
-        new_acc = open(r"C:\Users\DELL\Desktop\Code\Python\Applications\Password organizer\Users\\" + str(self.username.get()) + ".txt", "w")
+        new_acc = open(r"Users\\" + str(self.username.get()) + ".txt", "w")
         save = hashlib.sha256(self.password.get().encode('utf-8')).hexdigest()
         new_acc.write(str(save))
         new_acc.close()
@@ -122,7 +122,7 @@ class App:
         self.password_save_label.place_forget()
         self.username_save.place_forget()
         self.username_save_label.place_forget()
-        file = open(r"C:\Users\DELL\Desktop\Code\Python\Applications\Password organizer\Information\\" + hashlib.sha256(str(self.username.get() + "-" + self.username_save.get()).encode('utf-8')).hexdigest(), "w")
+        file = open(r"Information\\" + hashlib.sha256(str(self.username.get() + "-" + self.username_save.get()).encode('utf-8')).hexdigest(), "w")
         file.write(str(self.username_save.get()) + " : " + str(self.password_save.get()))
         file.close()
         self.dashboard()
@@ -130,7 +130,7 @@ class App:
     def receive(self):
         try:
             global current_data_read
-            info = open(r"C:\Users\DELL\Desktop\Code\Python\Applications\Password organizer\Information\\" + hashlib.sha256(str(self.username.get() + "-" + self.receiver.get()).encode('utf-8')).hexdigest(), "r")
+            info = open(r"Information\\" + hashlib.sha256(str(self.username.get() + "-" + self.receiver.get()).encode('utf-8')).hexdigest(), "r")
             self.info_label = tk.Label(self.root, text=str(info.read()))
             self.info_label.place(x=0, y=60)
             current_data_read = str(info.read())
